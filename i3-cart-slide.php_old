@@ -1,0 +1,71 @@
+<?php
+/*
+Plugin Name: i3 Cart Slide
+Plugin URI: http://www.lws-webdesign.de/
+Description: 
+Author: Mo
+Version: 0.1
+Author URI: http://www.lws-webdesign.de/
+*/
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+
+function i3_cart_slide_function() {
+
+    //Check if WooCommerce is active
+    if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+
+    	global $woocommerce;
+      
+    	echo    '<div id="cart-slide-container">';
+    	echo 		'<div id="cart-slide-top"><a href="#"><span class="label">'.__('Cart', 'woocommerce').'</span> <span class="content">'.sprintf(_n('<span class="count">(%d Artikel)</span>', '<span class="count">(%d Artikel)</span>', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count), $woocommerce->cart->get_cart_total().'</span></a></div>';
+    	echo 		'<div id="cart-slide-bottom">';
+        echo            '<div class="widget_shopping_cart_content"><!-- mini_cart is inserted here http://sis-css-css.googlecode.com/svn/wp/plugins/woocommerce/woocommerce-ajax.php --></div>';
+    	echo  		'</div><!-- /cart-slide-bottom';
+    	echo 	'</div><!-- /cart-slide-container -->';
+
+    } // WooCommerce Check
+
+}
+add_action('wp_footer', 'i3_cart_slide_function', 100);
+
+
+// using ajax
+function add_cartslide_fragments( $fragments ) {
+    global $woocommerce;
+
+    ob_start();
+
+    ?>
+
+        <span class="content"><?php echo sprintf(_n('<span class="count">(%d Artikel)</span>', '<span class="count">(%d Artikel)</span>', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?><?php echo $woocommerce->cart->get_cart_total(); ?></span>
+  
+    <?php
+
+    $fragments['span.content'] = ob_get_clean();
+
+    return $fragments;
+
+}
+add_filter('add_to_cart_fragments', 'add_cartslide_fragments');
+
+
+
+function i3_cart_slide_css(){
+
+	if ( ! is_admin() ) {
+    	wp_enqueue_style( 'i3-cart-slide', plugins_url('/assets/css/style.css', __FILE__), false, '1.0.0', 'all');
+    	wp_enqueue_script( 'i3_cart_slide', plugins_url('/assets/js/functions.js', __FILE__), array('jquery'));
+    	
+    	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css', null, '4.0.1' );
+    }    
+}
+add_action('wp_enqueue_scripts', 'i3_cart_slide_css');
+
+
+
+
+
+
+

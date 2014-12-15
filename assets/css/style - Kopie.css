@@ -1,0 +1,117 @@
+
+
+
+#wccs-container {
+  width: 600px;
+  left: 50%;
+  margin-left: -300px; /* Half the elements width */
+  position: fixed;
+  bottom: 0px;
+  z-index: 99999;
+
+}
+#wccs-container,
+#wccs-container p,
+#wccs-container li {
+    color: #ffffff;
+}
+#wccs-container li.empty {
+	text-align: center;
+}
+
+.wccs-handle {
+  position: relative;
+  display: block;
+}
+.wccs-handle a:link {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.5em;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.wccs-handle a:after {
+  content: "\f078";
+  font-family: FontAwesome;
+  width: 1.5em;
+  display: inline-block;
+  text-align: center;
+}
+.wccs-handle.open a:after {
+  content: "\f00d";
+  font-family: FontAwesome;
+  width: 1.5em;
+  display: inline-block;
+  text-align: center;
+}
+.wccs-handle a:hover {
+  text-decoration: none;
+}
+.wccs-handle a:hover .label {
+  text-decoration: underline;
+}
+.wccs-handle a .count {
+  color: grey;
+}
+.wccs-handle a .amount {
+  font-weight: bold;
+}
+
+#wccs-content {
+  background-color: rgba(0, 0, 0, 0.8); 
+  padding: 0.5em; 
+}
+#wccs-content h2 {
+  display: none;
+}
+#wccs-content li,
+#wccs-content p {
+  margin-bottom: 1em;
+}
+#wccs-content img {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  max-width: 50px;
+  width: auto;
+  border: 0 transparent!important;
+}
+#wccs-content .quantity {
+  color: #ffffff;
+}
+#wccs-content .total {
+  border-top: 1px solid grey;
+  padding-top: 1em;
+}
+#wccs-content .checkout {
+  float: right;
+  margin-right: 0.3em;
+}
+
+
+/* Disable default margin on normal widget */
+#wccs-container .widget {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}

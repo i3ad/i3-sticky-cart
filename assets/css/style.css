@@ -1,0 +1,148 @@
+
+/* TO DO: rework css for mobiles and tablets */
+
+@media all and (max-width: 600px) {
+
+  #wccs-container {
+    width: 100%!important;
+    left: 0!important;
+    margin-left: 0!important;
+    overflow:scroll;
+    height:100%;
+  }
+}
+
+html, body { height: 100%; }
+
+/* 
+ * General container styles 
+ */
+#wccs-container {
+  width: 600px;
+  left: 50%;
+  margin-left: -300px; /* Half the elements width */
+  position: fixed;
+  bottom: 0;
+  z-index: 99999;
+}
+
+/* Hide the container on cart and checkout page, like the woo-widget */
+.woocommerce-cart #wccs-container,
+.woocommerce-checkout #wccs-container { display: none; }
+
+/* The text-color of the container elements */
+#wccs-container,
+#wccs-container p,
+#wccs-container li { color: #ffffff; }
+
+/* If cart is empty, align the text to center */
+#wccs-container li.empty { text-align: center; }
+
+/* Disable default margin on normal widget */
+#wccs-container .widget { margin: 0; }
+
+/* 
+ * Handle and Content same styles
+ */
+.wccs-handle a,
+.wccs-handle a:link,
+#wccs-content { background-color: rgba(0, 0, 0, 0.8); }
+/* 
+ * General handle styles 
+ */
+.wccs-handle {
+  position: relative;
+  display: block;
+}
+
+/* Handle link styles */
+.wccs-handle a,
+.wccs-handle a:link {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.5em;
+  color: #ffffff;
+}
+
+/* Disable link underline on hover, for all handle elements */
+.wccs-handle a:hover { text-decoration: none; }
+
+/* Only underline the "Cart" label */
+.wccs-handle a:hover .label { text-decoration: underline; }
+
+/* Style the "count" in the handle */
+.wccs-handle a .count { color: #9E9E9E; }
+
+/* Style the "amount" in the handle */
+.wccs-handle a .amount { font-weight: bold; }
+
+/* 
+ * Append FontAwesome icons to ehe handle-link 
+ */
+
+ /* Display a down arrow */
+.wccs-handle a:after {
+  content: "\f078";
+  font-family: FontAwesome;
+  width: 1.5em;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Display an X to close */
+.wccs-handle.open a:after {
+  content: "\f00d";
+  font-family: FontAwesome;
+  width: 1.5em;
+  display: inline-block;
+  text-align: center;
+}
+
+/* 
+ * General content styles
+ */
+ #wccs-content { padding: 1em; }
+
+/* Hide the widget title to be sure that it doesnt take space */
+#wccs-content h2.widgettitle { display: none; }
+
+#wccs-content li,
+#wccs-content p { 
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#wccs-content img {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  max-width: 50px;
+  width: auto;
+  border: 0 transparent;
+}
+
+#wccs-content .cart_list { border-bottom: 1px solid #9E9E9E; }
+
+#wccs-content .quantity { color: #ffffff; }
+
+#wccs-content .total {
+  border: 0;
+  padding-top: 1em;
+  text-align: right;
+  float: left;
+}
+
+#wccs-content .buttons { float: right; }
+
+/* 
+ * Clearfix
+ */
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+.cf:after { clear: both; }
+.cf { zoom: 1; /* For IE 6/7 (trigger hasLayout) */ }
